@@ -17,7 +17,7 @@ export default function TimelineMarker({ milestone, days, isCurrent }) {
             : 'bg-white dark:bg-slate-800 border-divider dark:border-slate-600'
         }`}
       />
-      <span className="absolute left-[7px] top-5 bottom-0 w-0.5 bg-divider dark:bg-slate-700" />
+      <span className="absolute left-[7px] top-5 bottom-0 w-0.5 bg-gradient-to-b from-primary-bright/60 to-divider dark:to-white/10" />
       <p className="text-xs font-semibold uppercase tracking-wide mb-1">
         {isCurrent ? (
           <span className="text-primary">● {t('timeline.youAreHere')}</span>

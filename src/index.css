@@ -1,42 +1,74 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/sora';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-}
 body {
-  @apply bg-white text-ink dark:bg-slate-900 dark:text-white;
+  @apply bg-sky-lo text-ink dark:bg-night-lo dark:text-slate-100 font-sans antialiased;
 }
 
-/* FE-1: slide horizontal com fallback de acessibilidade (DevFE §6.2) */
+/* FE-1: slide horizontal com fallback de acessibilidade */
 .onboarding-track {
   transition: transform 0.35s ease;
 }
 @media (prefers-reduced-motion: reduce) {
-  .onboarding-track {
-    transition: none;
+  .onboarding-track { transition: none; }
+  * { animation: none !important; transition-duration: 0.01ms !important; }
+}
+
+/* Assinatura: painel-céu. A variável --clarity (0..1) vem dos dias reais de sobriedade. */
+.sky-panel {
+  background:
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, #cbe7f6 calc(var(--clarity, 0) * 100%), #dde4e8) 0%,
+      #f4f9fb 100%
+    );
+}
+@media (prefers-color-scheme: dark) {
+  .sky-panel {
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, #12303f calc(var(--clarity, 0) * 100%), #0e2029) 0%,
+      #0b1b22 100%
+    );
   }
-  * {
-    animation: none !important;
+}
+/* Névoa que se dissipa com a clareza */
+.sky-mist {
+  opacity: calc(1 - var(--clarity, 0));
+  background: repeating-linear-gradient(
+    -4deg,
+    rgba(255, 255, 255, 0.55) 0 14px,
+    rgba(255, 255, 255, 0) 14px 34px
+  );
+}
+@media (prefers-color-scheme: dark) {
+  .sky-mist {
+    background: repeating-linear-gradient(
+      -4deg,
+      rgba(160, 190, 205, 0.14) 0 14px,
+      rgba(0, 0, 0, 0) 14px 34px
+    );
   }
 }
 
-/* FE-3: tematização do react-day-picker com tokens do UX */
+/* FE-3: react-day-picker com tokens v1.1 */
 .rdp-root {
-  --rdp-accent-color: #2ecc71;
-  --rdp-accent-background-color: #2ecc7133;
+  --rdp-accent-color: #0a7c55;
+  --rdp-accent-background-color: #0a7c5522;
   font-size: 0.9rem;
 }
 .claru-day-checked {
-  background: #2ecc71 !important;
+  background: #0a7c55 !important;
   color: #fff !important;
   border-radius: 9999px;
   opacity: 1 !important;
 }
 
-/* Foco visível (WCAG AA) */
 :focus-visible {
-  outline: 3px solid #3498db;
+  outline: 3px solid #1d6fa3;
   outline-offset: 2px;
 }

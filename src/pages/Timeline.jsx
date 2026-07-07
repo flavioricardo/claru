@@ -15,7 +15,7 @@ export default function Timeline() {
     <main className="max-w-md mx-auto p-4 pb-24">
       <header className="flex items-center gap-3 py-3">
         <Link to="/" aria-label={t('timeline.back')} className="text-secondary text-xl">←</Link>
-        <h1 className="text-2xl font-bold text-ink dark:text-white">{t('timeline.title')}</h1>
+        <h1 className="text-2xl font-display font-bold text-ink dark:text-white">{t('timeline.title')}</h1>
       </header>
       <ol className="mt-4">
         {MILESTONES.map((m) => (

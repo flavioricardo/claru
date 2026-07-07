@@ -46,14 +46,14 @@ export default function Onboarding() {
   );
 
   return (
-    <main className="min-h-dvh overflow-hidden bg-white dark:bg-slate-900">
+    <main className="min-h-dvh overflow-hidden bg-sky-lo dark:bg-night-lo">
       <div
         className="flex w-full onboarding-track"
         style={{ transform: `translateX(-${step * 100}%)` }}
       >
         {/* 1. Hero */}
-        <section className="w-full shrink-0 min-h-dvh flex flex-col items-center justify-center p-6 text-center">
-          <h1 className="text-5xl font-bold text-primary">{t('app.name')}</h1>
+        <section className="w-full shrink-0 min-h-dvh flex flex-col items-center justify-center p-6 text-center sky-panel" style={{ '--clarity': 0.35 }}>
+          <h1 className="text-6xl font-display font-bold text-primary dark:text-primary-bright tracking-tight">{t('app.name')}</h1>
           <p className="text-xl text-muted mt-3 mb-10">{t('app.tagline')}</p>
           <button
             onClick={next}

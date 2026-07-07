@@ -24,7 +24,7 @@ export default function Settings() {
 
   return (
     <main className="max-w-md mx-auto p-4 pb-24 space-y-6">
-      <h1 className="text-2xl font-bold text-ink dark:text-white py-3">{t('settings.title')}</h1>
+      <h1 className="text-2xl font-display font-bold text-ink dark:text-white py-3">{t('settings.title')}</h1>
 
       <section>
         <label className="block text-sm text-muted mb-1" htmlFor="name">{t('settings.name')}</label>

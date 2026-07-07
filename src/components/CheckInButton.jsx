@@ -15,7 +15,7 @@ export default function CheckInButton({ done, onCheckIn }) {
     <button
       onClick={handle}
       disabled={done}
-      className={`w-full min-h-[52px] rounded-card font-semibold text-white transition-transform
+      className={`w-full min-h-[54px] rounded-full font-display font-semibold text-white shadow-card transition-transform
         ${done ? 'bg-primary/50 cursor-default' : 'bg-primary hover:bg-primary/90 active:scale-[0.98]'}
         ${pulse ? 'motion-safe:animate-pulse' : ''}`}
     >

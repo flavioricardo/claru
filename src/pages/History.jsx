@@ -18,9 +18,9 @@ export default function History() {
 
   return (
     <main className="max-w-md mx-auto p-4 pb-24">
-      <h1 className="text-2xl font-bold text-ink dark:text-white py-3">{t('history.title')}</h1>
+      <h1 className="text-2xl font-display font-bold text-ink dark:text-white py-3">{t('history.title')}</h1>
 
-      <div className="rounded-card border border-divider dark:border-slate-700 bg-white dark:bg-slate-800 p-3 mb-4 flex justify-center">
+      <div className="rounded-card border border-divider dark:border-white/10 bg-white dark:bg-night-hi shadow-card p-3 mb-4 flex justify-center">
         <DayPicker
           mode="multiple"
           selected={checkinDays}

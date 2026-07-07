@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 export default function StreakBadge({ streak, record }) {
   const { t } = useTranslation();
   return (
-    <div className="rounded-card border border-divider dark:border-slate-700 bg-white dark:bg-slate-800 p-4 text-center">
+    <div className="rounded-card border border-divider dark:border-white/10 bg-white dark:bg-night-hi shadow-card p-4 text-center min-w-[104px] flex flex-col justify-center">
       <span aria-hidden="true" className="text-2xl">🔥</span>
-      <p className="font-bold text-ink dark:text-white">
+      <p className="font-display font-bold text-ink dark:text-white text-lg">
         {t('streak.days', { count: streak })}
       </p>
       <p className="text-xs text-muted">{t('streak.checkinStreak')}</p>

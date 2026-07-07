@@ -7,16 +7,45 @@ import Timeline from './pages/Timeline';
 import History from './pages/History';
 import Settings from './pages/Settings';
 
+function Icon({ name }) {
+  // Ícones lineares próprios (substituem emojis genéricos na nav)
+  const paths = {
+    home: <path d="M3 11.5 12 4l9 7.5M5.5 10.5V20h13v-9.5" />,
+    timeline: <path d="M3 17c3-1 4.5-6 7-6s4 4 7 3 4-6 4-6M3 21h18" />,
+    history: <path d="M4 6h16v14H4zM4 10h16M8 4v4M16 4v4" />,
+    settings: (
+      <>
+        <circle cx="12" cy="12" r="3.2" />
+        <path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.4 5.4l1.9 1.9M16.7 16.7l1.9 1.9M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9" />
+      </>
+    ),
+  };
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
+
 function Nav() {
   const { t } = useTranslation();
   const items = [
-    ['/', '🏠', t('nav.home')],
-    ['/timeline', '📈', t('nav.timeline')],
-    ['/history', '📅', t('nav.history')],
-    ['/settings', '⚙️', t('nav.settings')],
+    ['/', 'home', t('nav.home')],
+    ['/timeline', 'timeline', t('nav.timeline')],
+    ['/history', 'history', t('nav.history')],
+    ['/settings', 'settings', t('nav.settings')],
   ];
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-30 bg-white dark:bg-slate-900 border-t border-divider dark:border-slate-700">
+    <nav className="fixed bottom-0 inset-x-0 z-30 bg-white/90 dark:bg-night-hi/90 backdrop-blur border-t border-divider dark:border-white/10">
       <ul className="max-w-md mx-auto flex">
         {items.map(([to, icon, label]) => (
           <li key={to} className="flex-1">
@@ -24,12 +53,14 @@ function Nav() {
               to={to}
               end={to === '/'}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center min-h-[56px] text-xs ${
-                  isActive ? 'text-primary font-semibold' : 'text-muted'
+                `flex flex-col items-center justify-center gap-0.5 min-h-[58px] text-[11px] ${
+                  isActive
+                    ? 'text-primary dark:text-primary-bright font-semibold'
+                    : 'text-muted dark:text-slate-400'
                 }`
               }
             >
-              <span aria-hidden="true" className="text-lg">{icon}</span>
+              <Icon name={icon} />
               {label}
             </NavLink>
           </li>
