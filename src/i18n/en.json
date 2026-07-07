@@ -1,0 +1,94 @@
+{
+  "app": { "name": "Claru", "tagline": "Clearer every day." },
+  "onboarding": {
+    "start": "Get started",
+    "nameTitle": "What should we call you?",
+    "namePlaceholder": "Your name or nickname",
+    "dateTitle": "When was your last drink?",
+    "goalTitle": "What do you want?",
+    "goalReduce": "Cut back",
+    "goalStop": "Quit",
+    "levelTitle": "How much did you use to drink?",
+    "levelHint": "Optional — helps us personalize your messages",
+    "levelLight": "Light",
+    "levelModerate": "Moderate",
+    "levelHeavy": "Heavy",
+    "levelSkip": "Prefer not to say",
+    "next": "Continue",
+    "back": "Back",
+    "welcome": "Welcome, {{name}}!",
+    "day1": "Your journey starts now."
+  },
+  "dashboard": {
+    "day_one": "Day {{count}}",
+    "day_other": "Day {{count}}",
+    "hours": "{{count}} hours",
+    "youAreDoing": "You're doing great!",
+    "checkin": "Confirm today's sobriety",
+    "checkinDone": "Today's check-in done ✓",
+    "checkinCelebrate": "{{count}}-day check-in streak! 🎉",
+    "nextMilestone": "{{count}} days until {{label}}",
+    "milestoneToday": "Milestone unlocked today! 🎉",
+    "viewTimeline": "View timeline",
+    "sos": "I need help"
+  },
+  "streak": {
+    "checkinStreak": "Check-in streak",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "record": "Best: {{count}} days"
+  },
+  "timeline": {
+    "title": "Your recovery",
+    "youAreHere": "You are here",
+    "unlocked": "Unlocked ✓",
+    "daysLeft": "{{count}} days to go",
+    "source": "Source",
+    "back": "Back"
+  },
+  "history": {
+    "title": "History",
+    "legend": "Days with check-in",
+    "registerRelapse": "Log a fresh start"
+  },
+  "relapse": {
+    "title": "You are not alone",
+    "subtitle": "Starting over is always possible. No judgment.",
+    "talk": "Talk to someone now",
+    "cvv": "CVV — Call 188 (Brazil, 24h, free)",
+    "cvvChat": "CVV chat",
+    "caps": "Find support near you",
+    "restart": "Log it and start fresh",
+    "whenTitle": "When did it happen?",
+    "confirm": "Restart from Day 1",
+    "close": "Not now",
+    "farewell": "You had {{count}} days of sobriety. That is a victory no one can erase. Your new start begins now."
+  },
+  "settings": {
+    "title": "Settings",
+    "name": "Name",
+    "goal": "Goal",
+    "language": "Language",
+    "notifications": "Daily notifications (9am)",
+    "notifGranted": "Enabled",
+    "notifAsk": "Enable",
+    "consentTitle": "Help improve Claru",
+    "consentBody": "Share anonymous usage data (no name, no email, no personal content) so we can improve the app. You can turn this off anytime.",
+    "consentOn": "Sharing enabled",
+    "consentOff": "Sharing disabled",
+    "privacy": "Your data stays on your device. Nothing is sent without your explicit consent.",
+    "save": "Save"
+  },
+  "nav": { "home": "Home", "timeline": "Timeline", "history": "History", "settings": "Settings" },
+  "tl": {
+    "h24": { "label": "24 hours", "title": "Alcohol-free body", "body": "Alcohol is fully eliminated from your blood. Rehydration improves digestion, brain function and energy. Your liver goes back to regulating blood sugar." },
+    "w1": { "label": "1 week", "title": "Real sleep", "body": "Significant improvement in sleep quality (alcohol disrupts REM). Fewer headaches and better focus." },
+    "w2": { "label": "2 weeks", "title": "Calmer digestion", "body": "Stomach acid production normalizes and acid reflux decreases. Noticeable gains in concentration begin." },
+    "w3": { "label": "3 weeks", "title": "Lighter liver", "body": "Reduction of liver fat accumulated from alcohol use." },
+    "m1": { "label": "1 month", "title": "Blood pressure & wellbeing", "body": "Blood pressure drops (comparable to medication). Average 1.5% weight loss. Better insulin response and mental wellbeing." },
+    "m3": { "label": "3 months", "title": "Heart and brain", "body": "Cardiac function keeps recovering. Cortical thickness begins to recover." },
+    "m6": { "label": "6 months", "title": "Deep recovery", "body": "Heart function continues improving. Cognitive gains consolidate." },
+    "y1": { "label": "1 year", "title": "A new chapter", "body": "Alcohol-related cancer risk drops by 4–9%. Significant recovery of affected organs. You earned this moment." },
+    "sources": "Sources: CISA, The Conversation/ScienceAlert, Canadian Medical Association Journal, Mehta et al."
+  }
+}

@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+body {
+  @apply bg-white text-ink dark:bg-slate-900 dark:text-white;
+}
+
+/* FE-1: slide horizontal com fallback de acessibilidade (DevFE §6.2) */
+.onboarding-track {
+  transition: transform 0.35s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-track {
+    transition: none;
+  }
+  * {
+    animation: none !important;
+  }
+}
+
+/* FE-3: tematização do react-day-picker com tokens do UX */
+.rdp-root {
+  --rdp-accent-color: #2ecc71;
+  --rdp-accent-background-color: #2ecc7133;
+  font-size: 0.9rem;
+}
+.claru-day-checked {
+  background: #2ecc71 !important;
+  color: #fff !important;
+  border-radius: 9999px;
+  opacity: 1 !important;
+}
+
+/* Foco visível (WCAG AA) */
+:focus-visible {
+  outline: 3px solid #3498db;
+  outline-offset: 2px;
+}

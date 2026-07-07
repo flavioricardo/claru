@@ -1,0 +1,94 @@
+{
+  "app": { "name": "Claru", "tagline": "Cada dia mais claro." },
+  "onboarding": {
+    "start": "Começar",
+    "nameTitle": "Como você gostaria de ser chamado?",
+    "namePlaceholder": "Seu nome ou apelido",
+    "dateTitle": "Quando foi o seu último drinque?",
+    "goalTitle": "O que você quer?",
+    "goalReduce": "Reduzir",
+    "goalStop": "Parar",
+    "levelTitle": "Quanto você costumava beber?",
+    "levelHint": "Opcional — nos ajuda a personalizar as mensagens",
+    "levelLight": "Leve",
+    "levelModerate": "Moderado",
+    "levelHeavy": "Pesado",
+    "levelSkip": "Prefiro não responder",
+    "next": "Continuar",
+    "back": "Voltar",
+    "welcome": "Bem-vindo, {{name}}!",
+    "day1": "Sua jornada começa agora."
+  },
+  "dashboard": {
+    "day_one": "Dia {{count}}",
+    "day_other": "Dia {{count}}",
+    "hours": "{{count}} horas",
+    "youAreDoing": "Você está incrível!",
+    "checkin": "Confirmar sobriedade de hoje",
+    "checkinDone": "Check-in de hoje feito ✓",
+    "checkinCelebrate": "Streak de {{count}} dias de check-in! 🎉",
+    "nextMilestone": "Faltam {{count}} dias para {{label}}",
+    "milestoneToday": "Marco desbloqueado hoje! 🎉",
+    "viewTimeline": "Ver linha do tempo",
+    "sos": "Preciso de ajuda"
+  },
+  "streak": {
+    "checkinStreak": "Streak de check-in",
+    "days_one": "{{count}} dia",
+    "days_other": "{{count}} dias",
+    "record": "Recorde: {{count}} dias"
+  },
+  "timeline": {
+    "title": "Sua recuperação",
+    "youAreHere": "Você está aqui",
+    "unlocked": "Desbloqueado ✓",
+    "daysLeft": "Faltam {{count}} dias",
+    "source": "Fonte",
+    "back": "Voltar"
+  },
+  "history": {
+    "title": "Histórico",
+    "legend": "Dias com check-in",
+    "registerRelapse": "Registrar recomeço"
+  },
+  "relapse": {
+    "title": "Você não está sozinho",
+    "subtitle": "Recomeçar é sempre possível. Sem julgamentos.",
+    "talk": "Conversar com alguém agora",
+    "cvv": "CVV — Ligue 188 (24h, gratuito)",
+    "cvvChat": "Chat do CVV",
+    "caps": "Encontrar um CAPS perto de você",
+    "restart": "Documentar e recomeçar",
+    "whenTitle": "Quando foi?",
+    "confirm": "Recomeçar do Dia 1",
+    "close": "Agora não",
+    "farewell": "Você teve {{count}} dias de sobriedade. Isso é uma vitória que ninguém apaga. Seu novo começo é agora."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "name": "Nome",
+    "goal": "Objetivo",
+    "language": "Idioma",
+    "notifications": "Notificações diárias (09h)",
+    "notifGranted": "Ativadas",
+    "notifAsk": "Ativar",
+    "consentTitle": "Ajude a melhorar o Claru",
+    "consentBody": "Compartilhar dados anônimos de uso (sem nome, sem e-mail, sem conteúdo pessoal) para melhorarmos o app. Você pode desligar quando quiser.",
+    "consentOn": "Compartilhamento ativado",
+    "consentOff": "Compartilhamento desativado",
+    "privacy": "Seus dados ficam no seu dispositivo. Nada é enviado sem o seu consentimento explícito.",
+    "save": "Salvar"
+  },
+  "nav": { "home": "Início", "timeline": "Linha do tempo", "history": "Histórico", "settings": "Ajustes" },
+  "tl": {
+    "h24": { "label": "24 horas", "title": "Corpo livre de álcool", "body": "O álcool é completamente eliminado do sangue. A reidratação melhora a digestão, a função cerebral e a energia. O fígado volta a regular o açúcar no sangue." },
+    "w1": { "label": "1 semana", "title": "Sono de verdade", "body": "Melhora significativa na qualidade do sono (o álcool prejudica o ciclo REM). Redução de dor de cabeça e melhora de concentração." },
+    "w2": { "label": "2 semanas", "title": "Digestão em paz", "body": "Normalização da produção de ácido estomacal e redução de refluxo gástrico. Início de melhoras notáveis na concentração." },
+    "w3": { "label": "3 semanas", "title": "Fígado mais leve", "body": "Redução da gordura hepática acumulada pelo consumo de álcool." },
+    "m1": { "label": "1 mês", "title": "Pressão e bem-estar", "body": "Queda da pressão arterial (efeito comparável ao de medicamentos). Perda de peso média de 1,5%. Melhora na resposta à insulina e no bem-estar mental." },
+    "m3": { "label": "3 meses", "title": "Coração e cérebro", "body": "Recuperação de funções cardíacas em andamento. A espessura do córtex cerebral começa a se recuperar." },
+    "m6": { "label": "6 meses", "title": "Recuperação profunda", "body": "Funções cardíacas seguem se recuperando. Os ganhos cognitivos se consolidam." },
+    "y1": { "label": "1 ano", "title": "Um novo capítulo", "body": "Risco de câncer relacionado ao álcool cai de 4% a 9%. Recuperação significativa dos órgãos afetados. Você merecia este momento." },
+    "sources": "Fontes: CISA, The Conversation/ScienceAlert, Canadian Medical Association Journal, Mehta et al."
+  }
+}
