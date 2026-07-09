@@ -7,6 +7,7 @@ import Timeline from './pages/Timeline';
 import History from './pages/History';
 import Settings from './pages/Settings';
 import Privacy from './pages/Privacy';
+import Landing from './pages/Landing';
 import { initAnalytics } from './analytics/analytics';
 
 initAnalytics(); // inerte sem consentimento + chave (G3)
@@ -43,10 +44,10 @@ function Icon({ name }) {
 function Nav() {
   const { t } = useTranslation();
   const items = [
-    ['/', 'home', t('nav.home')],
-    ['/timeline', 'timeline', t('nav.timeline')],
-    ['/history', 'history', t('nav.history')],
-    ['/settings', 'settings', t('nav.settings')],
+    ['/app', 'home', t('nav.home')],
+    ['/app/timeline', 'timeline', t('nav.timeline')],
+    ['/app/history', 'history', t('nav.history')],
+    ['/app/settings', 'settings', t('nav.settings')],
   ];
   return (
     <nav className="fixed bottom-0 inset-x-0 z-30 bg-white/90 dark:bg-night-hi/90 backdrop-blur border-t border-divider dark:border-white/10">
@@ -55,7 +56,7 @@ function Nav() {
           <li key={to} className="flex-1">
             <NavLink
               to={to}
-              end={to === '/'}
+              end={to === '/app'}
               className={({ isActive }) =>
                 `flex flex-col items-center justify-center gap-0.5 min-h-[58px] text-[11px] ${
                   isActive
@@ -74,27 +75,43 @@ function Nav() {
   );
 }
 
-function Shell() {
+function AppRoutes() {
   const { user } = useUser();
+  // Dentro de /app: onboarding se novo, dashboard se já iniciado
   if (!user)
     return (
       <Routes>
-        <Route path="/privacy" element={<Privacy />} />
+        <Route path="privacy" element={<Privacy />} />
         <Route path="*" element={<Onboarding />} />
       </Routes>
     );
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/timeline" element={<Timeline />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="" element={<Dashboard />} />
+        <Route path="timeline" element={<Timeline />} />
+        <Route path="history" element={<History />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="*" element={<Navigate to="/app" replace />} />
       </Routes>
       <Nav />
     </>
+  );
+}
+
+function Shell() {
+  return (
+    <Routes>
+      {/* Raiz = landing page */}
+      <Route path="/" element={<Landing />} />
+      {/* Rota /privacy acessível sem app (link no footer da landing) */}
+      <Route path="/app/privacy" element={<Privacy />} />
+      {/* Tudo dentro de /app */}
+      <Route path="/app/*" element={<AppRoutes />} />
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 }
 

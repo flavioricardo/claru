@@ -29,7 +29,7 @@ export default function Onboarding() {
       language: i18n.language,
     });
     next();
-    setTimeout(() => navigate('/'), 1600);
+    setTimeout(() => navigate('/app'), 1600);
   };
 
   const Choice = ({ label, onClick, selected }) => (

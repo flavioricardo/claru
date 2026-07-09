@@ -115,7 +115,7 @@ export default function Settings() {
           {consent ? t('settings.consentOn') : t('settings.consentOff')}
         </button>
         <p className="text-xs text-muted mt-3">{t('settings.privacy')}</p>
-        <Link to="/privacy" className="block text-sm text-secondary underline mt-2">
+        <Link to="/app/privacy" className="block text-sm text-secondary underline mt-2">
           {t('settings.privacyLink')}
         </Link>
       </section>

@@ -47,7 +47,7 @@ export default function Dashboard() {
       </div>
 
       <Link
-        to="/timeline"
+        to="/app/timeline"
         className="block text-center min-h-[48px] leading-[48px] rounded-full border-2 border-secondary/50 text-secondary dark:text-sky-hi dark:border-sky-hi/40 font-semibold"
       >
         {t('dashboard.viewTimeline')} →
