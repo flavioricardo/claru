@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>Claru</title>
+  <script>
+    // spa-github-pages v2 (rafgraph/spa-github-pages)
+    // /claru/app → redireciona para /claru/?/app  (path na query sem chave)
+    var l = window.location;
+    var segmentCount = 1;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?' +
+      '/' + l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+  </head>
+  <body></body>
+</html>
