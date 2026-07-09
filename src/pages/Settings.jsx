@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { useNotifications } from '../hooks/useNotifications';
 import { hasConsent, setConsent } from '../analytics/analytics';
@@ -114,6 +115,9 @@ export default function Settings() {
           {consent ? t('settings.consentOn') : t('settings.consentOff')}
         </button>
         <p className="text-xs text-muted mt-3">{t('settings.privacy')}</p>
+        <Link to="/privacy" className="block text-sm text-secondary underline mt-2">
+          {t('settings.privacyLink')}
+        </Link>
       </section>
     </main>
   );

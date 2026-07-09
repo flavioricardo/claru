@@ -6,6 +6,10 @@ import Dashboard from './pages/Dashboard';
 import Timeline from './pages/Timeline';
 import History from './pages/History';
 import Settings from './pages/Settings';
+import Privacy from './pages/Privacy';
+import { initAnalytics } from './analytics/analytics';
+
+initAnalytics(); // inerte sem consentimento + chave (G3)
 
 function Icon({ name }) {
   // Ícones lineares próprios (substituem emojis genéricos na nav)
@@ -72,13 +76,20 @@ function Nav() {
 
 function Shell() {
   const { user } = useUser();
-  if (!user) return <Onboarding />;
+  if (!user)
+    return (
+      <Routes>
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="*" element={<Onboarding />} />
+      </Routes>
+    );
   return (
     <>
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/history" element={<History />} />
+        <Route path="/privacy" element={<Privacy />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

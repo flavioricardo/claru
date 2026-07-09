@@ -63,6 +63,7 @@ export default function SOSModal({ open, onClose }) {
                 {t('relapse.close')}
               </button>
             </div>
+            <p className="text-xs text-muted mt-4 leading-relaxed">{t('disclaimer.sos')}</p>
           </>
         )}
         {step === 'when' && (

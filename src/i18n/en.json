@@ -1,5 +1,8 @@
 {
-  "app": { "name": "Claru", "tagline": "Clearer every day." },
+  "app": {
+    "name": "Claru",
+    "tagline": "Clearer every day."
+  },
   "onboarding": {
     "start": "Get started",
     "nameTitle": "What should we call you?",
@@ -77,18 +80,74 @@
     "consentOn": "Sharing enabled",
     "consentOff": "Sharing disabled",
     "privacy": "Your data stays on your device. Nothing is sent without your explicit consent.",
-    "save": "Save"
+    "save": "Save",
+    "privacyLink": "Privacy & notices"
   },
-  "nav": { "home": "Home", "timeline": "Timeline", "history": "History", "settings": "Settings" },
+  "nav": {
+    "home": "Home",
+    "timeline": "Timeline",
+    "history": "History",
+    "settings": "Settings"
+  },
   "tl": {
-    "h24": { "label": "24 hours", "title": "Alcohol-free body", "body": "Alcohol is fully eliminated from your blood. Rehydration improves digestion, brain function and energy. Your liver goes back to regulating blood sugar." },
-    "w1": { "label": "1 week", "title": "Real sleep", "body": "Significant improvement in sleep quality (alcohol disrupts REM). Fewer headaches and better focus." },
-    "w2": { "label": "2 weeks", "title": "Calmer digestion", "body": "Stomach acid production normalizes and acid reflux decreases. Noticeable gains in concentration begin." },
-    "w3": { "label": "3 weeks", "title": "Lighter liver", "body": "Reduction of liver fat accumulated from alcohol use." },
-    "m1": { "label": "1 month", "title": "Blood pressure & wellbeing", "body": "Blood pressure drops (comparable to medication). Average 1.5% weight loss. Better insulin response and mental wellbeing." },
-    "m3": { "label": "3 months", "title": "Heart and brain", "body": "Cardiac function keeps recovering. Cortical thickness begins to recover." },
-    "m6": { "label": "6 months", "title": "Deep recovery", "body": "Heart function continues improving. Cognitive gains consolidate." },
-    "y1": { "label": "1 year", "title": "A new chapter", "body": "Alcohol-related cancer risk drops by 4–9%. Significant recovery of affected organs. You earned this moment." },
+    "h24": {
+      "label": "24 hours",
+      "title": "Alcohol-free body",
+      "body": "Alcohol is fully eliminated from your blood. Rehydration improves digestion, brain function and energy. Your liver goes back to regulating blood sugar."
+    },
+    "w1": {
+      "label": "1 week",
+      "title": "Real sleep",
+      "body": "Significant improvement in sleep quality (alcohol disrupts REM). Fewer headaches and better focus."
+    },
+    "w2": {
+      "label": "2 weeks",
+      "title": "Calmer digestion",
+      "body": "Stomach acid production normalizes and acid reflux decreases. Noticeable gains in concentration begin."
+    },
+    "w3": {
+      "label": "3 weeks",
+      "title": "Lighter liver",
+      "body": "Reduction of liver fat accumulated from alcohol use."
+    },
+    "m1": {
+      "label": "1 month",
+      "title": "Blood pressure & wellbeing",
+      "body": "Blood pressure drops (comparable to medication). Average 1.5% weight loss. Better insulin response and mental wellbeing."
+    },
+    "m3": {
+      "label": "3 months",
+      "title": "Heart and brain",
+      "body": "Cardiac function keeps recovering. Cortical thickness begins to recover."
+    },
+    "m6": {
+      "label": "6 months",
+      "title": "Deep recovery",
+      "body": "Heart function continues improving. Cognitive gains consolidate."
+    },
+    "y1": {
+      "label": "1 year",
+      "title": "A new chapter",
+      "body": "Alcohol-related cancer risk drops by 4–9%. Significant recovery of affected organs. You earned this moment."
+    },
     "sources": "Sources: CISA, The Conversation/ScienceAlert, Canadian Medical Association Journal, Mehta et al."
+  },
+  "disclaimer": {
+    "short": "Claru is a support tool and does not replace medical or psychological treatment.",
+    "sos": "⚕️ Important: in severe dependence, stopping alcohol abruptly can cause withdrawal syndrome (tremors, heavy sweating, confusion, seizures). If you feel these symptoms, seek medical care immediately.",
+    "link": "Privacy & notices"
+  },
+  "privacy": {
+    "title": "Privacy & Notices",
+    "updated": "Draft v1.0 — July 2026 — under review by a privacy professional",
+    "s1t": "Where your data lives",
+    "s1b": "Everything you record in Claru (name, dates, check-ins, fresh starts) is stored only on your device, in your browser's local storage. We have no server: we cannot see, receive or access your data. If you clear your browser data or switch devices, your history cannot be recovered — cross-device sync will arrive in a future version, with an account.",
+    "s2t": "Usage data (optional, off by default)",
+    "s2b": "If — and only if — you enable sharing in Settings, we send anonymous usage events (e.g. 'check-in done') to PostHog so we can learn what to improve. These events never include your name, email or any personal content. You can turn it off anytime, which stops sending immediately. Legal basis: consent (LGPD, Art. 11).",
+    "s3t": "Your rights (LGPD/GDPR)",
+    "s3b": "At any time you can: withdraw consent (Settings), and delete all your data by clearing this site's browsing data — since everything is local, deletion is immediate and complete.",
+    "s4t": "Health notice",
+    "s4b": "Claru is a motivational support and education tool, and does not replace diagnosis, medical treatment or psychological care. In severe dependence, stopping alcohol abruptly can cause serious withdrawal syndrome — seek medical guidance before quitting. In crisis in Brazil, call CVV: 188 (24h, free).",
+    "back": "Back"
   }
 }

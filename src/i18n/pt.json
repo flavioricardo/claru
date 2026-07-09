@@ -1,5 +1,8 @@
 {
-  "app": { "name": "Claru", "tagline": "Cada dia mais claro." },
+  "app": {
+    "name": "Claru",
+    "tagline": "Cada dia mais claro."
+  },
   "onboarding": {
     "start": "Começar",
     "nameTitle": "Como você gostaria de ser chamado?",
@@ -77,18 +80,74 @@
     "consentOn": "Compartilhamento ativado",
     "consentOff": "Compartilhamento desativado",
     "privacy": "Seus dados ficam no seu dispositivo. Nada é enviado sem o seu consentimento explícito.",
-    "save": "Salvar"
+    "save": "Salvar",
+    "privacyLink": "Privacidade e avisos"
   },
-  "nav": { "home": "Início", "timeline": "Linha do tempo", "history": "Histórico", "settings": "Ajustes" },
+  "nav": {
+    "home": "Início",
+    "timeline": "Linha do tempo",
+    "history": "Histórico",
+    "settings": "Ajustes"
+  },
   "tl": {
-    "h24": { "label": "24 horas", "title": "Corpo livre de álcool", "body": "O álcool é completamente eliminado do sangue. A reidratação melhora a digestão, a função cerebral e a energia. O fígado volta a regular o açúcar no sangue." },
-    "w1": { "label": "1 semana", "title": "Sono de verdade", "body": "Melhora significativa na qualidade do sono (o álcool prejudica o ciclo REM). Redução de dor de cabeça e melhora de concentração." },
-    "w2": { "label": "2 semanas", "title": "Digestão em paz", "body": "Normalização da produção de ácido estomacal e redução de refluxo gástrico. Início de melhoras notáveis na concentração." },
-    "w3": { "label": "3 semanas", "title": "Fígado mais leve", "body": "Redução da gordura hepática acumulada pelo consumo de álcool." },
-    "m1": { "label": "1 mês", "title": "Pressão e bem-estar", "body": "Queda da pressão arterial (efeito comparável ao de medicamentos). Perda de peso média de 1,5%. Melhora na resposta à insulina e no bem-estar mental." },
-    "m3": { "label": "3 meses", "title": "Coração e cérebro", "body": "Recuperação de funções cardíacas em andamento. A espessura do córtex cerebral começa a se recuperar." },
-    "m6": { "label": "6 meses", "title": "Recuperação profunda", "body": "Funções cardíacas seguem se recuperando. Os ganhos cognitivos se consolidam." },
-    "y1": { "label": "1 ano", "title": "Um novo capítulo", "body": "Risco de câncer relacionado ao álcool cai de 4% a 9%. Recuperação significativa dos órgãos afetados. Você merecia este momento." },
+    "h24": {
+      "label": "24 horas",
+      "title": "Corpo livre de álcool",
+      "body": "O álcool é completamente eliminado do sangue. A reidratação melhora a digestão, a função cerebral e a energia. O fígado volta a regular o açúcar no sangue."
+    },
+    "w1": {
+      "label": "1 semana",
+      "title": "Sono de verdade",
+      "body": "Melhora significativa na qualidade do sono (o álcool prejudica o ciclo REM). Redução de dor de cabeça e melhora de concentração."
+    },
+    "w2": {
+      "label": "2 semanas",
+      "title": "Digestão em paz",
+      "body": "Normalização da produção de ácido estomacal e redução de refluxo gástrico. Início de melhoras notáveis na concentração."
+    },
+    "w3": {
+      "label": "3 semanas",
+      "title": "Fígado mais leve",
+      "body": "Redução da gordura hepática acumulada pelo consumo de álcool."
+    },
+    "m1": {
+      "label": "1 mês",
+      "title": "Pressão e bem-estar",
+      "body": "Queda da pressão arterial (efeito comparável ao de medicamentos). Perda de peso média de 1,5%. Melhora na resposta à insulina e no bem-estar mental."
+    },
+    "m3": {
+      "label": "3 meses",
+      "title": "Coração e cérebro",
+      "body": "Recuperação de funções cardíacas em andamento. A espessura do córtex cerebral começa a se recuperar."
+    },
+    "m6": {
+      "label": "6 meses",
+      "title": "Recuperação profunda",
+      "body": "Funções cardíacas seguem se recuperando. Os ganhos cognitivos se consolidam."
+    },
+    "y1": {
+      "label": "1 ano",
+      "title": "Um novo capítulo",
+      "body": "Risco de câncer relacionado ao álcool cai de 4% a 9%. Recuperação significativa dos órgãos afetados. Você merecia este momento."
+    },
     "sources": "Fontes: CISA, The Conversation/ScienceAlert, Canadian Medical Association Journal, Mehta et al."
+  },
+  "disclaimer": {
+    "short": "O Claru é uma ferramenta de apoio e não substitui tratamento médico ou psicológico.",
+    "sos": "⚕️ Importante: em casos de dependência severa, parar de beber de forma súbita pode causar síndrome de abstinência (tremores, suor intenso, confusão, convulsões). Se sentir esses sintomas, procure um serviço de saúde imediatamente.",
+    "link": "Privacidade e avisos"
+  },
+  "privacy": {
+    "title": "Privacidade e Avisos",
+    "updated": "Rascunho v1.0 — Julho 2026 — em revisão por profissional de privacidade",
+    "s1t": "Onde ficam seus dados",
+    "s1b": "Tudo o que você registra no Claru (nome, datas, check-ins, recomeços) fica armazenado apenas no seu dispositivo, no armazenamento local do navegador. Não temos servidor: não vemos, não recebemos e não podemos acessar seus dados. Se você limpar os dados do navegador ou trocar de aparelho, o histórico não poderá ser recuperado — sincronização entre dispositivos chegará em versão futura, com sua conta.",
+    "s2t": "Dados de uso (opcional, desligado por padrão)",
+    "s2b": "Se — e somente se — você ativar o compartilhamento em Ajustes, enviamos eventos anônimos de uso (ex.: 'check-in feito') para a ferramenta PostHog, para entendermos o que melhorar. Esses eventos nunca incluem seu nome, e-mail ou qualquer conteúdo pessoal. Você pode desativar quando quiser, e isso interrompe o envio imediatamente. Base legal: consentimento (LGPD, Art. 11).",
+    "s3t": "Seus direitos (LGPD)",
+    "s3b": "Você pode, a qualquer momento: revogar o consentimento (Ajustes), e apagar todos os seus dados limpando os dados de navegação deste site — como tudo é local, a exclusão é imediata e completa.",
+    "s4t": "Aviso de saúde",
+    "s4b": "O Claru é uma ferramenta de apoio motivacional e educação, e não substitui diagnóstico, tratamento médico ou acompanhamento psicológico. Em casos de dependência severa, a interrupção súbita do consumo de álcool pode causar síndrome de abstinência grave — procure orientação médica antes de parar. Em crise, ligue para o CVV: 188 (24h, gratuito).",
+    "back": "Voltar"
   }
 }

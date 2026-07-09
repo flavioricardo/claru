@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 
 // FE-1 (confirmado): slide horizontal entre telas, com fallback via
@@ -61,6 +61,10 @@ export default function Onboarding() {
           >
             {t('onboarding.start')}
           </button>
+          <p className="text-xs text-muted mt-8 max-w-xs">{t('disclaimer.short')}</p>
+          <Link to="/privacy" className="text-xs text-secondary underline mt-2">
+            {t('disclaimer.link')}
+          </Link>
         </section>
 
         {/* 2. Nome */}
