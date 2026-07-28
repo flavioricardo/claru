@@ -2,6 +2,8 @@
 
 **Cada dia mais claro.** App web responsivo (mobile-first) para redução e cessação do consumo de álcool.
 
+**Live:** https://flavioricardo.github.io/claru/
+
 ## Stack
 React 19 + Vite · Tailwind CSS · react-i18next (PT/EN) · react-router · react-day-picker
 
@@ -37,3 +39,7 @@ Para ativar PostHog em produção: definir `VITE_POSTHOG_KEY` e carregar o snipp
 - `userId` reservado no schema do usuário (auth magic link + JWT — D1)
 - localStorage abstraído em hook (migração p/ IndexedDB)
 - Datas 100% ISO 8601 (migração limpa p/ PostgreSQL)
+
+## Estado do projeto
+
+Estado atual e pendências: [STATE.md](./STATE.md)
