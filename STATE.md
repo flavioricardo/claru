@@ -43,10 +43,10 @@ Corrigido em 2026-07-09: 404.html redirect + restore no `index.html` (padrão sp
 
 ## Pendências
 
-1. **Revogar o fine-grained PAT do GitHub** usado na sessão de 2026-07-28 (STATE.md criado via chat) — https://github.com/settings/tokens | Bloqueia: segurança da conta | Aberto desde: 2026-07-28
-2. **Deploy não é automático** — a `main` pode ficar à frente do que está no ar sem ninguém perceber. Instalar `docs-ci/deploy-workflow.yml.example` em `.github/workflows/` exige trocar a origem do Pages para "GitHub Actions" em https://github.com/flavioricardo/claru/settings/pages (ou adaptar o workflow pra continuar publicando na branch `gh-pages`) | Bloqueia: confiança de que produção reflete a `main` | Aberto desde: 2026-07-30
+1. **Deploy não é automático** — a `main` pode ficar à frente do que está no ar sem ninguém perceber. Instalar `docs-ci/deploy-workflow.yml.example` em `.github/workflows/` exige trocar a origem do Pages para "GitHub Actions" em https://github.com/flavioricardo/claru/settings/pages (ou adaptar o workflow pra continuar publicando na branch `gh-pages`) | Bloqueia: confiança de que produção reflete a `main` | Aberto desde: 2026-07-30
 
 ### Resolvidas
 
+- [x] ~~**Revogar o fine-grained PAT do GitHub**~~ — encerrada em 2026-07-30 por decisão do dono do repo: todos os tokens estão próximos da data de expiração. Aberta em 2026-07-28. Nota para quem reler: expiração próxima não é revogação — o token segue válido e utilizável até a data. Reabrir se ele aparecer em arquivo versionado, log de CI ou issue.
 - [x] ~~**PostHog não configurado em produção**~~ — resolvido em 2026-07-30: `VITE_POSTHOG_KEY` está em `.env.production` (versionada) e verificada dentro do bundle publicado em `gh-pages`. Aberta em 2026-07-28. Nota: eventos só fluem quando o usuário liga o consentimento (default desligado) — ausência de eventos não é regressão de config.
 - [x] ~~**Sem testes automatizados**~~ — resolvido em 2026-07-30: Vitest + 35 testes em `src/utils/dateUtils.test.js` e `src/analytics/analytics.test.js`, validados por mutação (quebrar o reset por recaída derruba 3 testes; remover o `delete safe.name` derruba 1). Aberta em 2026-07-28.
