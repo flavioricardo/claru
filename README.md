@@ -13,6 +13,8 @@ npm install
 npm run dev      # desenvolvimento
 npm run build    # produção (dist/ — hospedagem estática, decisão D3)
 npm run preview  # testar o build
+npm test         # Vitest — lógica de sobriedade, streak e consentimento
+npm run lint     # oxlint
 ```
 
 ## Decisões implementadas (rastreabilidade)
@@ -33,7 +35,7 @@ npm run preview  # testar o build
 
 ## Analytics (LGPD)
 Nenhum dado sai do dispositivo sem consentimento (toggle em Ajustes, default **desligado**).
-Para ativar PostHog em produção: definir `VITE_POSTHOG_KEY` e carregar o snippet — a camada `track()` já está pronta e minimiza PII automaticamente.
+PostHog já está ativo em produção via `VITE_POSTHOG_KEY` em `.env.production` (a chave `phc_` é pública/client-side por design — só permite enviar eventos, não ler). A camada `track()` minimiza PII automaticamente: remove `name` antes de qualquer envio, e nada é enviado sem consentimento. Ambas as garantias são cobertas por teste em `src/analytics/analytics.test.js`.
 
 ## Preparado para v1.1 (sem refactor)
 - `userId` reservado no schema do usuário (auth magic link + JWT — D1)
