@@ -90,6 +90,40 @@ function ScienceCard({ item, index, lang }) {
   );
 }
 
+/* ─── Componente: seletor de idioma (nav) ─── */
+function LangToggle({ i18n, isPt }) {
+  return (
+    <div
+      role="group"
+      aria-label={isPt ? 'Idioma' : 'Language'}
+      className="flex items-center border border-divider dark:border-white/15 rounded-full p-0.5 text-xs font-semibold"
+    >
+      {[
+        ['pt', 'PT', 'Português'],
+        ['en', 'EN', 'English'],
+      ].map(([lng, short, full]) => {
+        const active = (lng === 'pt') === isPt;
+        return (
+          <button
+            key={lng}
+            type="button"
+            onClick={() => i18n.changeLanguage(lng)}
+            aria-pressed={active}
+            aria-label={full}
+            className={`px-2.5 py-1 rounded-full transition-colors ${
+              active
+                ? 'bg-primary text-white'
+                : 'text-muted dark:text-slate-400 hover:text-primary'
+            }`}
+          >
+            {short}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 /* ─── Componente: feature pill ─── */
 function Pill({ icon, text }) {
   return (
@@ -174,6 +208,7 @@ export default function Landing() {
       <nav className="max-w-2xl mx-auto px-5 py-4 flex items-center justify-between">
         <span className="font-display font-bold text-xl text-primary tracking-tight">Claru</span>
         <div className="flex items-center gap-3">
+          <LangToggle i18n={i18n} isPt={isPt} />
           <span className="text-xs border border-primary/30 text-primary rounded-full px-2 py-0.5 font-medium">
             {copy.betaBadge}
           </span>
