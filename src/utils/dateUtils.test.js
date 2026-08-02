@@ -13,6 +13,8 @@ import {
   currentMilestone,
   uuidv4,
   todayISO,
+  localDateValue,
+  localDateTimeValue,
 } from './dateUtils';
 
 const NOW = '2026-07-30T12:00:00.000Z';
@@ -164,6 +166,61 @@ describe('marcos da timeline', () => {
 
   it('currentMilestone é null antes do primeiro marco', () => {
     expect(currentMilestone(0, milestones)).toBeNull();
+  });
+});
+
+describe('valores para inputs date / datetime-local', () => {
+  // Regressão: usar toISOString() nesses campos jogava o valor pro dia seguinte
+  // à noite em qualquer fuso a oeste de Greenwich, e o `max` passava a aceitar
+  // uma data futura. Os inputs falam hora LOCAL.
+  it('localDateValue segue o calendário local, não o UTC', () => {
+    // 21h em São Paulo (UTC-3) já é o dia seguinte em UTC
+    const noite = new Date('2026-08-02T00:30:00.000Z'); // = 01/08 21:30 em UTC-3
+    expect(noite.toISOString().slice(0, 10)).toBe('2026-08-02'); // o jeito antigo
+    const esperado = `${noite.getFullYear()}-${String(noite.getMonth() + 1).padStart(2, '0')}-${String(noite.getDate()).padStart(2, '0')}`;
+    expect(localDateValue(noite)).toBe(esperado);
+  });
+
+  it('localDateTimeValue casa com a hora do relógio do usuário', () => {
+    const d = new Date('2026-08-02T00:30:00.000Z');
+    expect(localDateTimeValue(d)).toBe(
+      `${localDateValue(d)}T${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
+    );
+  });
+
+  it('o valor default nunca está no futuro (serve de max do input)', () => {
+    const agora = new Date(NOW);
+    expect(new Date(localDateTimeValue(agora)).getTime()).toBeLessThanOrEqual(agora.getTime() + 60000);
+  });
+
+  it('formatos com zero à esquerda', () => {
+    const d = new Date(2026, 0, 5, 7, 3); // 05/01/2026 07:03 local
+    expect(localDateValue(d)).toBe('2026-01-05');
+    expect(localDateTimeValue(d)).toBe('2026-01-05T07:03');
+  });
+});
+
+describe('sobriedade medida num instante passado (recaída retroativa)', () => {
+  // Regressão: quem recaiu anteontem e registra hoje já tem 2 dias de volta —
+  // e os dias "perdidos" na despedida são os que tinha na época, não hoje.
+  const user = { lastDrinkDate: '2026-07-20T12:00:00.000Z' };
+
+  it('sem `at`, mede até agora', () => {
+    expect(sobrietyDays(user)).toBe(10);
+  });
+
+  it('com `at`, mede até o instante informado', () => {
+    const recaida = new Date('2026-07-27T12:00:00.000Z').getTime();
+    expect(sobrietyDays(user, [], recaida)).toBe(7);
+  });
+
+  it('recomeço a partir da recaída informada rende os dias já cumpridos desde ela', () => {
+    const relapses = [{ newStartDate: '2026-07-28T12:00:00.000Z' }];
+    expect(sobrietyDays(user, relapses)).toBe(2);
+  });
+
+  it('sobrietyHours também aceita instante', () => {
+    expect(sobrietyHours(user, [], new Date('2026-07-20T18:00:00.000Z').getTime())).toBe(6);
   });
 });
 

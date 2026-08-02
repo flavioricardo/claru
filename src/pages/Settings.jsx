@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
@@ -11,6 +11,26 @@ export default function Settings() {
   const { permission, request } = useNotifications(t('app.tagline'));
   const [name, setName] = useState(user?.name ?? '');
   const [consent, setConsentState] = useState(hasConsent());
+  const [aviso, setAviso] = useState(null); // { tipo, texto } — feedback do salvar
+
+  useEffect(() => {
+    if (!aviso) return;
+    const id = setTimeout(() => setAviso(null), 2500);
+    return () => clearTimeout(id);
+  }, [aviso]);
+
+  // Salvar em silêncio deixa o usuário sem saber se funcionou — e o nome vazio
+  // era descartado sem qualquer aviso.
+  const salvarNome = () => {
+    const limpo = name.trim();
+    if (!limpo) {
+      setName(user?.name ?? '');
+      setAviso({ tipo: 'erro', texto: t('settings.nameEmpty') });
+      return;
+    }
+    updateUser({ name: limpo });
+    setAviso({ tipo: 'ok', texto: t('settings.saved') });
+  };
 
   const toggleConsent = () => {
     const next = !consent;
@@ -37,12 +57,18 @@ export default function Settings() {
             className="flex-1 min-h-[48px] rounded-card border border-divider dark:border-slate-600 dark:bg-slate-800 dark:text-white px-3"
           />
           <button
-            onClick={() => updateUser({ name: name.trim() || user?.name })}
+            onClick={salvarNome}
             className="min-h-[48px] px-4 rounded-card bg-secondary text-white font-semibold"
           >
             {t('settings.save')}
           </button>
         </div>
+        <p
+          aria-live="polite"
+          className={`text-sm mt-1 min-h-[20px] ${aviso?.tipo === 'erro' ? 'text-care' : 'text-primary'}`}
+        >
+          {aviso?.texto ?? ''}
+        </p>
       </section>
 
       <section>

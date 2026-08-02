@@ -14,7 +14,8 @@ export default function Timeline() {
   return (
     <main className="max-w-md mx-auto p-4 pb-24">
       <header className="flex items-center gap-3 py-3">
-        <Link to="/" aria-label={t('timeline.back')} className="text-secondary text-xl">←</Link>
+        {/* "/" é a landing de marketing — voltar tem que devolver ao app */}
+        <Link to="/app" aria-label={t('timeline.back')} className="text-secondary text-xl">←</Link>
         <h1 className="text-2xl font-display font-bold text-ink dark:text-white">{t('timeline.title')}</h1>
       </header>
       <ol className="mt-4">

@@ -28,6 +28,10 @@
 | Timeline em rota separada full-screen, 100% estática | `pages/Timeline.jsx`, `data/timeline.js` |
 | Tokens visuais (paleta, Inter, 8px grid, WCAG AA) | `tailwind.config.js`, `index.css` |
 | Idioma escolhível na landing (não só em Ajustes) — persiste em `localStorage` e segue pro app | `pages/Landing.jsx` (`LangToggle`), `i18n/index.js` |
+| Inputs `date`/`datetime-local` usam hora LOCAL (`localDateValue`/`localDateTimeValue`) — `toISOString()` joga o campo pro futuro a oeste de Greenwich | `utils/dateUtils.js` |
+| Recaída reinicia a sobriedade na data INFORMADA, não na do registro | `context/UserContext.jsx` (`registerRelapse`) |
+| Telas do onboarding fora de quadro ficam `inert` — sem isso o teclado tabula para campos invisíveis | `pages/Onboarding.jsx` (`Slide`) |
+| Rotas do app carregam sob demanda; só a landing vai no bundle inicial | `App.jsx` (`lazy`/`Suspense`) |
 
 ## Preparado para v1.1 (sem refactor previsto)
 
@@ -40,6 +44,14 @@
 Corrigido em 2026-07-09: 404.html redirect + restore no `index.html` (padrão spa-github-pages v2), incluindo fix de barra dupla `/claru//app`.
 
 **Procedimento (manual, hoje):** merge na `main` → `npm run build` → publicar o conteúdo de `dist/` na branch `gh-pages`. O `404.html` vem de `public/`, então o build já o inclui. Não existe CI de deploy: `docs-ci/deploy-workflow.yml.example` é só exemplo, não está instalado em `.github/workflows/`. **Merge na `main` sozinho NÃO atualiza o site.**
+
+## QA — auditoria de 2026-08-01
+
+Auditoria de bugs, fluxo, usabilidade, acessibilidade, performance e segurança (Chromium 390×844, fuso America/Sao_Paulo, axe-core WCAG 2.1 A/AA). Corrigidos: tela 6/6 do onboarding que nunca aparecia; links `/privacy` e "voltar" da Timeline que expulsavam o usuário do app; fuso UTC em `date`/`datetime-local` (campo abria 3h no futuro); recaída que ignorava a data informada; plurais com `count=1`; modal SOS sem foco/Escape/trap; slides do onboarding tabuláveis fora de quadro; contraste abaixo de AA nos marcos bloqueados.
+
+Resultado: **0 violações axe** nas 7 telas + modal (antes: 14 de contraste + 1 crítica de label). Bundle inicial 125 kB → **101 kB gzip** com code splitting.
+
+**Decisão consciente:** `npm audit` aponta GHSA-qwww-vcr4-c8h2 (high) em react-router 7.18.1. É CSRF em **modo RSC com server actions**; este app é SPA client-side sem servidor, então não é explorável. O range do advisory é `>=7.12.0 <8.3.0` — 7.18.2 continua afetado, e só um major (8.3.0+) sairia dele. Não vale o risco agora; reavaliar quando houver outro motivo para subir de major.
 
 ## Pendências
 

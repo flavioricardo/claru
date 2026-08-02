@@ -25,12 +25,14 @@
   "dashboard": {
     "day_one": "Day {{count}}",
     "day_other": "Day {{count}}",
-    "hours": "{{count}} hours",
+    "hours_one": "{{count}} hour",
+    "hours_other": "{{count}} hours",
     "youAreDoing": "You're doing great!",
     "checkin": "Confirm today's sobriety",
     "checkinDone": "Today's check-in done ✓",
     "checkinCelebrate": "{{count}}-day check-in streak! 🎉",
-    "nextMilestone": "{{count}} days until {{label}}",
+    "nextMilestone_one": "{{count}} day until {{label}}",
+    "nextMilestone_other": "{{count}} days until {{label}}",
     "milestoneToday": "Milestone unlocked today! 🎉",
     "viewTimeline": "View timeline",
     "sos": "I need help"
@@ -39,13 +41,15 @@
     "checkinStreak": "Check-in streak",
     "days_one": "{{count}} day",
     "days_other": "{{count}} days",
-    "record": "Best: {{count}} days"
+    "record_one": "Best: {{count}} day",
+    "record_other": "Best: {{count}} days"
   },
   "timeline": {
     "title": "Your recovery",
     "youAreHere": "You are here",
     "unlocked": "Unlocked ✓",
-    "daysLeft": "{{count}} days to go",
+    "daysLeft_one": "{{count}} day to go",
+    "daysLeft_other": "{{count}} days to go",
     "source": "Source",
     "back": "Back"
   },
@@ -65,7 +69,8 @@
     "whenTitle": "When did it happen?",
     "confirm": "Restart from Day 1",
     "close": "Not now",
-    "farewell": "You had {{count}} days of sobriety. That is a victory no one can erase. Your new start begins now."
+    "farewell_one": "You had {{count}} day of sobriety. That is a victory no one can erase. Your new start begins now.",
+    "farewell_other": "You had {{count}} days of sobriety. That is a victory no one can erase. Your new start begins now."
   },
   "settings": {
     "title": "Settings",
@@ -81,6 +86,8 @@
     "consentOff": "Sharing disabled",
     "privacy": "Your data stays on your device. Nothing is sent without your explicit consent.",
     "save": "Save",
+    "saved": "Name saved ✓",
+    "nameEmpty": "Enter a name to save.",
     "privacyLink": "Privacy & notices"
   },
   "nav": {
