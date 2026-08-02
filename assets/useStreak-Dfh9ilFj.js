@@ -1,0 +1,1 @@
+import{a as e,d as t,f as n,o as r,t as i}from"./index-Cjr7lmC0.js";function a(){let{user:a,checkIns:o,relapses:s}=i();return{diasSobriedade:t(a,s),horasSobriedade:n(a,s),streakCheckin:r(o),recordeCheckin:e(o)}}export{a as t};
