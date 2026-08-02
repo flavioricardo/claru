@@ -25,12 +25,14 @@
   "dashboard": {
     "day_one": "Dia {{count}}",
     "day_other": "Dia {{count}}",
-    "hours": "{{count}} horas",
+    "hours_one": "{{count}} hora",
+    "hours_other": "{{count}} horas",
     "youAreDoing": "Você está incrível!",
     "checkin": "Confirmar sobriedade de hoje",
     "checkinDone": "Check-in de hoje feito ✓",
     "checkinCelebrate": "Streak de {{count}} dias de check-in! 🎉",
-    "nextMilestone": "Faltam {{count}} dias para {{label}}",
+    "nextMilestone_one": "Falta {{count}} dia para {{label}}",
+    "nextMilestone_other": "Faltam {{count}} dias para {{label}}",
     "milestoneToday": "Marco desbloqueado hoje! 🎉",
     "viewTimeline": "Ver linha do tempo",
     "sos": "Preciso de ajuda"
@@ -39,13 +41,15 @@
     "checkinStreak": "Streak de check-in",
     "days_one": "{{count}} dia",
     "days_other": "{{count}} dias",
-    "record": "Recorde: {{count}} dias"
+    "record_one": "Recorde: {{count}} dia",
+    "record_other": "Recorde: {{count}} dias"
   },
   "timeline": {
     "title": "Sua recuperação",
     "youAreHere": "Você está aqui",
     "unlocked": "Desbloqueado ✓",
-    "daysLeft": "Faltam {{count}} dias",
+    "daysLeft_one": "Falta {{count}} dia",
+    "daysLeft_other": "Faltam {{count}} dias",
     "source": "Fonte",
     "back": "Voltar"
   },
@@ -65,7 +69,8 @@
     "whenTitle": "Quando foi?",
     "confirm": "Recomeçar do Dia 1",
     "close": "Agora não",
-    "farewell": "Você teve {{count}} dias de sobriedade. Isso é uma vitória que ninguém apaga. Seu novo começo é agora."
+    "farewell_one": "Você teve {{count}} dia de sobriedade. Isso é uma vitória que ninguém apaga. Seu novo começo é agora.",
+    "farewell_other": "Você teve {{count}} dias de sobriedade. Isso é uma vitória que ninguém apaga. Seu novo começo é agora."
   },
   "settings": {
     "title": "Ajustes",
@@ -81,6 +86,8 @@
     "consentOff": "Compartilhamento desativado",
     "privacy": "Seus dados ficam no seu dispositivo. Nada é enviado sem o seu consentimento explícito.",
     "save": "Salvar",
+    "saved": "Nome salvo ✓",
+    "nameEmpty": "Digite um nome para salvar.",
     "privacyLink": "Privacidade e avisos"
   },
   "nav": {

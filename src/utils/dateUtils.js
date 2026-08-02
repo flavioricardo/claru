@@ -3,6 +3,22 @@
 export const nowISO = () => new Date().toISOString();
 export const todayISO = () => new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
+/**
+ * Valores para <input type="date"> e <input type="datetime-local">.
+ * Esses inputs falam HORA LOCAL — usar toISOString() (UTC) joga o campo pro
+ * futuro em qualquer fuso a oeste de Greenwich: às 21h em São Paulo (UTC-3),
+ * toISOString() já virou o dia. Daí um `max` que aceita data futura.
+ */
+const pad = (n) => String(n).padStart(2, '0');
+
+export function localDateValue(d = new Date()) {
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+}
+
+export function localDateTimeValue(d = new Date()) {
+  return `${localDateValue(d)}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 export function uuidv4() {
   if (crypto?.randomUUID) return crypto.randomUUID();
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -23,15 +39,17 @@ export function sobrietyStart(user, relapses = []) {
   return dates.length ? new Date(Math.max(...dates)) : new Date();
 }
 
-export function sobrietyDays(user, relapses = []) {
+// `at` permite medir a sobriedade num instante passado — usado ao registrar uma
+// recaída retroativa, pra saber quantos dias o usuário realmente tinha na época.
+export function sobrietyDays(user, relapses = [], at = Date.now()) {
   const start = sobrietyStart(user, relapses);
-  const ms = Date.now() - start.getTime();
+  const ms = at - start.getTime();
   return Math.max(0, Math.floor(ms / 86400000));
 }
 
-export function sobrietyHours(user, relapses = []) {
+export function sobrietyHours(user, relapses = [], at = Date.now()) {
   const start = sobrietyStart(user, relapses);
-  return Math.max(0, Math.floor((Date.now() - start.getTime()) / 3600000));
+  return Math.max(0, Math.floor((at - start.getTime()) / 3600000));
 }
 
 /**

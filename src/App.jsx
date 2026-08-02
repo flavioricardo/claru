@@ -1,14 +1,19 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { UserProvider, useUser } from './context/UserContext';
-import Onboarding from './pages/Onboarding';
-import Dashboard from './pages/Dashboard';
-import Timeline from './pages/Timeline';
-import History from './pages/History';
-import Settings from './pages/Settings';
-import Privacy from './pages/Privacy';
 import Landing from './pages/Landing';
 import { initAnalytics } from './analytics/analytics';
+
+// A landing é a porta de entrada e fica no bundle inicial. O resto do app —
+// incluindo o react-day-picker, que só o Histórico usa — carrega sob demanda,
+// para quem só veio ler a landing não baixar o app inteiro.
+const Onboarding = lazy(() => import('./pages/Onboarding'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Timeline = lazy(() => import('./pages/Timeline'));
+const History = lazy(() => import('./pages/History'));
+const Settings = lazy(() => import('./pages/Settings'));
+const Privacy = lazy(() => import('./pages/Privacy'));
 
 initAnalytics(); // inerte sem consentimento + chave (G3)
 
@@ -102,16 +107,18 @@ function AppRoutes() {
 
 function Shell() {
   return (
-    <Routes>
-      {/* Raiz = landing page */}
-      <Route path="/" element={<Landing />} />
-      {/* Rota /privacy acessível sem app (link no footer da landing) */}
-      <Route path="/app/privacy" element={<Privacy />} />
-      {/* Tudo dentro de /app */}
-      <Route path="/app/*" element={<AppRoutes />} />
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <Suspense fallback={<div className="min-h-dvh bg-sky-lo dark:bg-night-lo" aria-busy="true" />}>
+      <Routes>
+        {/* Raiz = landing page */}
+        <Route path="/" element={<Landing />} />
+        {/* Rota /privacy acessível sem app (link no footer da landing) */}
+        <Route path="/app/privacy" element={<Privacy />} />
+        {/* Tudo dentro de /app */}
+        <Route path="/app/*" element={<AppRoutes />} />
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 

@@ -44,14 +44,15 @@ export function UserProvider({ children }) {
       // NÃO incrementa dias de sobriedade (Orquestração §6 / UX §3.2 corrigido).
       checkInToday() {
         const date = todayISO();
-        setCheckIns((prev) => {
-          if (prev.some((c) => c.date === date)) return prev;
-          track('checkin', { date });
-          return [
-            ...prev,
-            { id: uuidv4(), userId: user?.id ?? null, date, createdAt: nowISO() },
-          ];
-        });
+        // O track() fica FORA do updater: React pode reexecutar um updater
+        // (StrictMode), e evento de analytics não é idempotente.
+        if (checkIns.some((c) => c.date === date)) return;
+        setCheckIns((prev) =>
+          prev.some((c) => c.date === date)
+            ? prev
+            : [...prev, { id: uuidv4(), userId: user?.id ?? null, date, createdAt: nowISO() }]
+        );
+        track('checkin', { date });
       },
 
       hasCheckedInToday() {
@@ -60,13 +61,17 @@ export function UserProvider({ children }) {
 
       // Recaída: histórico invisível ao usuário, retido para analytics
       // (Conceito v1.2 §11c). Nenhum dado é apagado.
+      // A sobriedade recomeça QUANDO a recaída aconteceu, não quando o usuário
+      // teve coragem de registrar. Quem recaiu anteontem e registra hoje já tem
+      // dois dias — o contador precisa refletir isso, senão o passo "Quando foi?"
+      // é decorativo.
       registerRelapse(relapseDateISO, previousStreakDays) {
         const rec = {
           id: uuidv4(),
           userId: user?.id ?? null,
           relapseDate: relapseDateISO,
           previousStreakDays,
-          newStartDate: nowISO(),
+          newStartDate: relapseDateISO,
           createdAt: nowISO(),
         };
         setRelapses((prev) => [...prev, rec]);
