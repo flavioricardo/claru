@@ -12,7 +12,7 @@
 - **Dados:** 100% client-side — `localStorage` (sem backend). Schema `User`/`CheckIn`/`Relapse`, UUID v4, datas em ISO 8601 (migração futura para IndexedDB/PostgreSQL já prevista sem refactor).
 - **Analytics:** PostHog, atrás de consentimento explícito (toggle em Ajustes, default **desligado**). Camada `track()` minimiza PII automaticamente. `VITE_POSTHOG_KEY` configurada em `.env.production` (versionada — chave `phc_` é pública/client-side por design do PostHog).
 - **Testes:** Vitest (`npm test`). Cobre a lógica sensível: contador de sobriedade, reset por recaída, streak de check-in e o gate de consentimento do analytics.
-- **Deploy:** GitHub Pages, branch `gh-pages` — **live:** https://flavioricardo.github.io/claru/
+- **Deploy:** automático via `.github/workflows/deploy.yml` — todo push na `main` builda, testa e publica na branch `gh-pages`. **live:** https://flavioricardo.github.io/claru/
 - **Repo:** https://github.com/flavioricardo/claru (público, branch main)
 
 ## Decisões de produto/arquitetura (rastreadas no README)
@@ -43,7 +43,7 @@
 
 Corrigido em 2026-07-09: 404.html redirect + restore no `index.html` (padrão spa-github-pages v2), incluindo fix de barra dupla `/claru//app`.
 
-**Procedimento (manual, hoje):** merge na `main` → `npm run build` → publicar o conteúdo de `dist/` na branch `gh-pages`. O `404.html` vem de `public/`, então o build já o inclui. Não existe CI de deploy: `docs-ci/deploy-workflow.yml.example` é só exemplo, não está instalado em `.github/workflows/`. **Merge na `main` sozinho NÃO atualiza o site.**
+**Automatizado desde 2026-08-02:** `.github/workflows/deploy.yml` roda em todo push na `main` — `npm test` → `npm run build` → publica `dist/` na branch `gh-pages` via `peaceiris/actions-gh-pages`. Deliberadamente NÃO usa `actions/deploy-pages` (que exigiria trocar a origem do Pages para "GitHub Actions" nas configurações do repo); publica direto na `gh-pages`, a mesma branch que o Pages já serve, então não houve nenhuma mudança de configuração no GitHub. Merge na `main` agora atualiza o site sozinho — não precisa mais de build/publish manual.
 
 ## QA — auditoria de 2026-08-01
 
@@ -55,10 +55,11 @@ Resultado: **0 violações axe** nas 7 telas + modal (antes: 14 de contraste + 1
 
 ## Pendências
 
-1. **Deploy não é automático** — a `main` pode ficar à frente do que está no ar sem ninguém perceber. Instalar `docs-ci/deploy-workflow.yml.example` em `.github/workflows/` exige trocar a origem do Pages para "GitHub Actions" em https://github.com/flavioricardo/claru/settings/pages (ou adaptar o workflow pra continuar publicando na branch `gh-pages`) | Bloqueia: confiança de que produção reflete a `main` | Aberto desde: 2026-07-30
+Nenhuma no momento.
 
 ### Resolvidas
 
+- [x] ~~**Deploy não é automático**~~ — resolvido em 2026-08-02: `.github/workflows/deploy.yml` publica a `main` na `gh-pages` a cada push, sem exigir troca de configuração no Pages (ver seção "Deploy — routing SPA" acima). Aberta em 2026-07-30. `docs-ci/deploy-workflow.yml.example` foi removido — o workflow real está instalado.
 - [x] ~~**Revogar o fine-grained PAT do GitHub**~~ — encerrada em 2026-07-30 por decisão do dono do repo: todos os tokens estão próximos da data de expiração. Aberta em 2026-07-28. Nota para quem reler: expiração próxima não é revogação — o token segue válido e utilizável até a data. Reabrir se ele aparecer em arquivo versionado, log de CI ou issue.
 - [x] ~~**PostHog não configurado em produção**~~ — resolvido em 2026-07-30: `VITE_POSTHOG_KEY` está em `.env.production` (versionada) e verificada dentro do bundle publicado em `gh-pages`. Aberta em 2026-07-28. Nota: eventos só fluem quando o usuário liga o consentimento (default desligado) — ausência de eventos não é regressão de config.
 - [x] ~~**Sem testes automatizados**~~ — resolvido em 2026-07-30: Vitest + 35 testes em `src/utils/dateUtils.test.js` e `src/analytics/analytics.test.js`, validados por mutação (quebrar o reset por recaída derruba 3 testes; remover o `delete safe.name` derruba 1). Aberta em 2026-07-28.
