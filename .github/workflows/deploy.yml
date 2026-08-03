@@ -1,0 +1,36 @@
+name: Deploy to GitHub Pages
+
+# Publishes straight to the gh-pages branch, matching the Pages config already
+# in place (Settings → Pages → Source: "Deploy from a branch" → gh-pages).
+# Deliberately NOT using actions/deploy-pages: that requires switching Source
+# to "GitHub Actions" by hand first, and this workflow needs zero manual setup.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci || npm install
+      - run: npm test
+      - run: npm run build
+      # SPA fallback: deep links (/app/timeline etc.) fall through to 404.html
+      - run: cp dist/index.html dist/404.html
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
