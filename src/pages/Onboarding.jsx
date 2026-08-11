@@ -3,12 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { localDateValue } from '../utils/dateUtils';
+import { auditCScore, auditRiskZone } from '../utils/audit';
 
 // FE-1 (confirmado): slide horizontal entre telas, com fallback via
 // prefers-reduced-motion (transição desativada em CSS — ver index.css).
-// Fluxo de 6 telas do UX v1.0 §3.1. Sem login (MVP client-side).
-const STEPS = ['hero', 'name', 'date', 'goal', 'level', 'welcome'];
+// Fluxo de 8 telas do UX v1.0 §3.1 (as 3 últimas telas do "nível" viraram o
+// AUDIT-C — mesmo instrumento OMS usado pelo Modera Brasil/Meu SUS Digital).
+// Sem login (MVP client-side).
+const STEPS = ['hero', 'name', 'date', 'goal', 'audit1', 'audit2', 'audit3', 'welcome'];
 const PAUSA_BOAS_VINDAS = 1600;
+// Cada pergunta tem 5 alternativas (0 a 4 pontos), na ordem oficial do AUDIT-C.
+const AUDIT_QUESTIONS = ['audit1', 'audit2', 'audit3'];
 
 function Choice({ label, onClick, selected }) {
   return (
@@ -49,6 +54,7 @@ export default function Onboarding() {
   const [name, setName] = useState('');
   const [date, setDate] = useState(localDateValue());
   const [goal, setGoal] = useState(null);
+  const [auditAnswers, setAuditAnswers] = useState([null, null, null]);
   const nomeRef = useRef(null);
   const timer = useRef(null);
 
@@ -64,19 +70,30 @@ export default function Onboarding() {
   useEffect(() => () => clearTimeout(timer.current), []);
 
   // createUser troca a rota para o Dashboard no mesmo ciclo de render, então
-  // criar o usuário aqui apagaria a tela 6 antes de ela aparecer. Mostramos as
-  // boas-vindas primeiro; o usuário só é criado quando ela já foi vista.
-  const finish = (drinkingLevel) => {
+  // criar o usuário aqui apagaria a tela de boas-vindas antes de ela aparecer.
+  // Mostramos as boas-vindas primeiro; o usuário só é criado quando ela já
+  // foi vista.
+  const finish = (score) => {
     next();
     timer.current = setTimeout(() => {
       createUser({
         name: name.trim() || 'Você',
         goal,
-        drinkingLevel,
+        auditScore: score,
+        auditRiskZone: auditRiskZone(score),
         lastDrinkDate: new Date(date + 'T12:00:00').toISOString(),
         language: i18n.language,
       });
     }, PAUSA_BOAS_VINDAS);
+  };
+
+  // Responde a pergunta N do AUDIT-C (0-based); na última, soma tudo e fecha
+  // o onboarding — não há tela própria de "confirmar", a resposta já avança.
+  const answerAudit = (qIndex, value) => {
+    const answers = auditAnswers.map((a, i) => (i === qIndex ? value : a));
+    setAuditAnswers(answers);
+    if (qIndex < AUDIT_QUESTIONS.length - 1) next();
+    else finish(auditCScore(answers));
   };
 
   return (
@@ -172,25 +189,36 @@ export default function Onboarding() {
           </button>
         </Slide>
 
-        {/* 5. Nível anterior (opcional) */}
-        <Slide ativo={step === 4} className="justify-center max-w-md mx-auto">
-          <h2 className="text-2xl font-bold text-ink dark:text-white mb-1">
-            {t('onboarding.levelTitle')}
-          </h2>
-          <p className="text-muted mb-4">{t('onboarding.levelHint')}</p>
-          <div className="space-y-3">
-            <Choice label={t('onboarding.levelLight')} onClick={() => finish('light')} />
-            <Choice label={t('onboarding.levelModerate')} onClick={() => finish('moderate')} />
-            <Choice label={t('onboarding.levelHeavy')} onClick={() => finish('heavy')} />
-            <Choice label={t('onboarding.levelSkip')} onClick={() => finish('prefer_not')} />
-          </div>
-          <button onClick={back} className="min-h-[44px] text-muted mt-4">
-            {t('onboarding.back')}
-          </button>
-        </Slide>
+        {/* 5-7. AUDIT-C (OMS) — mesmo instrumento usado pelo Modera Brasil no
+            Meu SUS Digital. 3 perguntas, uma por tela; a última já fecha o
+            onboarding e calcula a zona de risco. */}
+        {AUDIT_QUESTIONS.map((key, qIndex) => (
+          <Slide key={key} ativo={step === 4 + qIndex} className="justify-center max-w-md mx-auto">
+            <h2 className="text-2xl font-bold text-ink dark:text-white mb-1">
+              {t(`onboarding.${key}Title`)}
+            </h2>
+            <p className="text-muted mb-4">{t(`onboarding.${key}Hint`)}</p>
+            <div className="space-y-3">
+              {[0, 1, 2, 3, 4].map((points) => (
+                <Choice
+                  key={points}
+                  label={t(`onboarding.${key}Opt${points}`)}
+                  selected={auditAnswers[qIndex] === points}
+                  onClick={() => answerAudit(qIndex, points)}
+                />
+              ))}
+            </div>
+            <button onClick={back} className="min-h-[44px] text-muted mt-4">
+              {t('onboarding.back')}
+            </button>
+            {qIndex === 0 && (
+              <p className="text-xs text-muted mt-4">{t('onboarding.auditDisclaimer')}</p>
+            )}
+          </Slide>
+        ))}
 
-        {/* 6. Boas-vindas */}
-        <Slide ativo={step === 5} className="items-center justify-center text-center">
+        {/* 8. Boas-vindas */}
+        <Slide ativo={step === 7} className="items-center justify-center text-center">
           <p className="text-4xl mb-3" aria-hidden="true">🌱</p>
           <h2 className="text-2xl font-bold text-ink dark:text-white">
             {t('onboarding.welcome', { name: name.trim() || '' })}

@@ -11,10 +11,11 @@ import BenefitCard from '../components/BenefitCard';
 import CheckInButton from '../components/CheckInButton';
 import StreakBadge from '../components/StreakBadge';
 import SOSModal from '../components/SOSModal';
+import RiskZoneCard from '../components/RiskZoneCard';
 
 export default function Dashboard() {
   const { t } = useTranslation();
-  const { checkInToday, hasCheckedInToday } = useUser();
+  const { user, checkInToday, hasCheckedInToday } = useUser();
   const { diasSobriedade, horasSobriedade, streakCheckin, recordeCheckin } = useStreak();
   const [sosOpen, setSosOpen] = useState(false);
   useNotifications(t('app.tagline'));
@@ -40,6 +41,8 @@ export default function Dashboard() {
           </p>
         )}
       </div>
+
+      <RiskZoneCard riskZone={user?.auditRiskZone} />
 
       <div className="grid grid-cols-[1fr_auto] gap-3 mb-4 items-stretch">
         <BenefitCard milestone={current ?? MILESTONES[0]} unlocked={!!current} />
