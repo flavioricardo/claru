@@ -20,19 +20,22 @@ export function UserProvider({ children }) {
       checkIns,
       relapses,
 
-      createUser({ name, goal, drinkingLevel, lastDrinkDate, language }) {
+      createUser({ name, goal, auditScore, auditRiskZone, lastDrinkDate, language }) {
         const u = {
           id: uuidv4(), // UUID v4 — BE-5 CONFIRMADO
           userId: null, // reservado p/ auth v1.1
           name,
           goal, // "reduce" | "stop"
-          drinkingLevel, // "light" | "moderate" | "heavy" | "prefer_not"
+          auditScore, // 0-12, AUDIT-C (OMS) — ver utils/audit.js
+          auditRiskZone, // "low" | "moderate" | "problematic"
           language,
           createdAt: nowISO(), // ISO 8601 em todos os campos
           lastDrinkDate,
         };
         setUser(u);
-        track('onboarding_completed', { goal, drinkingLevel });
+        // Score bruto fica só no dispositivo — o analytics recebe a zona,
+        // não a pontuação (minimização, mesmo padrão do `name`).
+        track('onboarding_completed', { goal, auditRiskZone });
         return u;
       },
 

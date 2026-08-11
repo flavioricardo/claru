@@ -103,6 +103,12 @@ export default function SOSModal({ open, onClose }) {
               >
                 💬 {t('relapse.cvvChat')}
               </a>
+              <a
+                href="tel:136"
+                className="block w-full min-h-[48px] rounded-card border border-care text-care font-semibold text-center leading-[48px]"
+              >
+                📍 {t('relapse.caps')}
+              </a>
               <button
                 onClick={() => setStep('when')}
                 className="w-full min-h-[48px] rounded-card border border-secondary text-secondary font-semibold"

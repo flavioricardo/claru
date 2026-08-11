@@ -32,6 +32,11 @@
 | Recaída reinicia a sobriedade na data INFORMADA, não na do registro | `context/UserContext.jsx` (`registerRelapse`) |
 | Telas do onboarding fora de quadro ficam `inert` — sem isso o teclado tabula para campos invisíveis | `pages/Onboarding.jsx` (`Slide`) |
 | Rotas do app carregam sob demanda; só a landing vai no bundle inicial | `App.jsx` (`lazy`/`Suspense`) |
+| Onboarding troca o autorrelato livre de consumo pelo AUDIT-C (OMS, 3 perguntas) — mesmo instrumento do Modera Brasil/Meu SUS Digital (MS, ago/2026) | `pages/Onboarding.jsx`, `utils/audit.js` |
+| Zona de risco (`low`/`moderate`/`problematic`) some no analytics; a pontuação bruta fica só no dispositivo | `context/UserContext.jsx` (`createUser`) |
+| Card de referência ao SUS (136) e ao Modera Brasil só aparece pra quem saiu do onboarding em risco moderado/problemático — sem alarmar quem está em risco baixo | `components/RiskZoneCard.jsx`, `pages/Dashboard.jsx` |
+| Botão de CAPS do SOS (`relapse.caps`, traduzido desde o MVP mas nunca renderizado) agora aponta pro Disque Saúde (tel:136) | `components/SOSModal.jsx` |
+| Divulgação do Modera Brasil em Ajustes, deixando explícito que não há vínculo oficial com o Claru | `pages/Settings.jsx` |
 
 ## Preparado para v1.1 (sem refactor previsto)
 

@@ -145,6 +145,21 @@ export default function Settings() {
           {t('settings.privacyLink')}
         </Link>
       </section>
+
+      {/* Divulgação do Modera Brasil (Meu SUS Digital, Ministério da Saúde,
+          ago/2026) — recurso oficial, sem qualquer vínculo com o Claru. */}
+      <section className="rounded-card border border-divider dark:border-slate-700 p-4">
+        <h2 className="font-semibold text-ink dark:text-white">{t('settings.resourcesTitle')}</h2>
+        <p className="text-sm text-muted mt-1 mb-3">{t('settings.resourcesBody')}</p>
+        <a
+          href="https://meususdigital.saude.gov.br/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-sm text-secondary underline"
+        >
+          {t('settings.resourcesLink')}
+        </a>
+      </section>
     </main>
   );
 }
