@@ -60,11 +60,4 @@ Resultado: **0 violações axe** nas 7 telas + modal (antes: 14 de contraste + 1
 
 ## Pendências
 
-Nenhuma no momento.
-
-### Resolvidas
-
-- [x] ~~**Deploy não é automático**~~ — resolvido em 2026-08-02: `.github/workflows/deploy.yml` publica a `main` na `gh-pages` a cada push, sem exigir troca de configuração no Pages (ver seção "Deploy — routing SPA" acima). Aberta em 2026-07-30. `docs-ci/deploy-workflow.yml.example` foi removido — o workflow real está instalado.
-- [x] ~~**Revogar o fine-grained PAT do GitHub**~~ — encerrada em 2026-07-30 por decisão do dono do repo: todos os tokens estão próximos da data de expiração. Aberta em 2026-07-28. Nota para quem reler: expiração próxima não é revogação — o token segue válido e utilizável até a data. Reabrir se ele aparecer em arquivo versionado, log de CI ou issue.
-- [x] ~~**PostHog não configurado em produção**~~ — resolvido em 2026-07-30: `VITE_POSTHOG_KEY` está em `.env.production` (versionada) e verificada dentro do bundle publicado em `gh-pages`. Aberta em 2026-07-28. Nota: eventos só fluem quando o usuário liga o consentimento (default desligado) — ausência de eventos não é regressão de config.
-- [x] ~~**Sem testes automatizados**~~ — resolvido em 2026-07-30: Vitest + 35 testes em `src/utils/dateUtils.test.js` e `src/analytics/analytics.test.js`, validados por mutação (quebrar o reset por recaída derruba 3 testes; remover o `delete safe.name` derruba 1). Aberta em 2026-07-28.
+- [ ] [humano] **P1 — PAT fine-grained do GitHub exposto em 2026-07-28 não foi revogado** (decisão de 2026-07-30: deixar expirar). Até a data de expiração ele segue válido. Revogar agora em https://github.com/settings/tokens, ou confirmar que já expirou e apagar esta linha.
