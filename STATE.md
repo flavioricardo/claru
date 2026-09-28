@@ -60,4 +60,4 @@ Resultado: **0 violações axe** nas 7 telas + modal (antes: 14 de contraste + 1
 
 ## Pendências
 
-- [ ] [humano] **P1 — PAT fine-grained do GitHub exposto em 2026-07-28 não foi revogado** (decisão de 2026-07-30: deixar expirar). Até a data de expiração ele segue válido. Revogar agora em https://github.com/settings/tokens, ou confirmar que já expirou e apagar esta linha.
+Nenhuma no momento.
